@@ -8,13 +8,13 @@ const styles = StyleSheet.create({
  },
  
  RegisterForm:{
-      width:Dimensions.get("screen").width*(9/10),
-      height:Dimensions.get("screen").height*(6/10),
-      alignItems:"center",
-      justifyContent:"center",
-      gap:20,
+  width:Dimensions.get("screen").width*(6/10),
+  height:Dimensions.get("screen").height*(8/10),
+  alignItems:"center",
+  justifyContent:"center",
+  gap:20,
+}
 
- }
  ,
  inputbox:{
    borderWidth:1,

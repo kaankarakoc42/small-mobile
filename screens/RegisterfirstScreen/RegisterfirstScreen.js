@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Text, View ,TextInput,TouchableOpacity,ToastAndroid} from 'react-native';
-import { FontAwesome } from '@expo/vector-icons'; 
 import styles from './styles.js'
-import api from '../../api/requests.js';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { Component } from 'react';
+import { Text, View ,TextInput,TouchableOpacity,ToastAndroid,ImageBackground} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons'; 
+import components from '../../components/components.js';
+import { StatusBar } from 'expo-status-bar';
+import customs from '../../customizer.js';
 
 class RegisterFirstScreen extends Component {
   constructor(props) {
@@ -24,17 +25,16 @@ class RegisterFirstScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground source={customs.bgImage} style={styles.container}>
       <View style={styles.RegisterForm}>
-        <FontAwesome name="user" size={50} color="black" />
-        <TextInput value={this.state.firstName} onChangeText={(val)=>this.setState({firstName:val})} style={styles.inputbox} placeholder='first name' />
-        <TextInput value={this.state.lastName} onChangeText={(val)=>this.setState({lastName:val})} style={styles.inputbox} placeholder='last name' />
-        <TextInput value={this.state.email} onChangeText={(val)=>this.setState({email:val})} style={styles.inputbox} placeholder='email' />
-        <TouchableOpacity onPress={this.send} style={styles.button}>
-            <Text style={styles.buttonText}>continue</Text>
-        </TouchableOpacity>
+        <components.SmalllogoimageComponents/>
+        <components.UsertextinputComponents icon={"user"} value={this.state.firstName} onChangeText={(val)=>this.setState({firstName:val})} placeholderTextColor={"white"} placeholder="First name"/>
+        <components.UsertextinputComponents icon={"user"} value={this.state.lastName} onChangeText={(val)=>this.setState({lastName:val})} placeholderTextColor={"white"} placeholder="Second name"/>
+        <components.UsertextinputComponents icon={"mail"} value={this.state.email} onChangeText={(val)=>this.setState({email:val})} placeholderTextColor={"white"} placeholder="Email"/>
+        <components.AuthformbuttonComponents title={"Continue"} onPress={this.send}/>
       </View>
-      </View>
+       <StatusBar  style='light'/>
+      </ImageBackground>
     )
   }
 }

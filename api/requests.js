@@ -30,8 +30,8 @@ const fetchControl = (val,replacer)=>{
 }
 
 const LoginRequest = (username,password) => {
-    data =JSON.stringify({email:username,password:password})
-    return fetch(`${baseUrl}/api/auth/login`,
+    data =JSON.stringify({EmailOrUserName:username,password:password})
+    return fetchControl(`${baseUrl}/api/auth/login`,
     {
         method:"POST",
         body:data,

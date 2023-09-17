@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View,TextInput,TouchableOpacity,ToastAndroid,Image,ImageBackground} from 'react-native';
 import { FontAwesome,Feather } from '@expo/vector-icons'; 
+import { StatusBar } from 'expo-status-bar';
 import styles from './styles.js';
 import api from '../../api/requests.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const logo = require("../../assets/small-mobile.png")
-const bgImage = require("../../assets/bg.png");
+import components from '../../components/components.js';
+import customs from '../../customizer.js';
 
 
 class LoginScreen extends Component {
@@ -21,7 +22,7 @@ class LoginScreen extends Component {
 
   send() {
     api.LoginRequest(this.state.username,this.state.password)
-    .then(response => response.json())
+    .then(response => {console.log(response);return response.json()})
     .then(json => {
       if(json.success){
           AsyncStorage.setItem("accesstoken",json.data.accessToken);
@@ -41,34 +42,23 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <ImageBackground source={bgImage}  style={styles.container}>
+      <ImageBackground source={customs.bgImage}  style={styles.container}>
       <View style={styles.loginForm}>
-        <Image source={logo} style={{
-            width: 300,
-            height: 100,
-            resizeMode: 'stretch',
-          }}/>
+        <components.SmalllogoimageComponents/>
+        <components.UsertextinputComponents icon={"mail"} value={this.state.username} onChangeText={(val)=>this.setState({username:val})} placeholderTextColor={"white"} placeholder="Username"/>
+        <components.UsertextinputComponents icon={"lock"} value={this.state.password} onChangeText={(val)=>this.setState({password:val})} placeholderTextColor={"white"} placeholder='password' secureTextEntry={true}/>
+        <components.AuthformbuttonComponents title={"Login"} onPress={this.send}/>
         <View style={{flexDirection:"row"}}>
-            <Feather name="mail" size={20} style={{alignSelf:"center",position:"absolute",right:10}}/>
-            <TextInput value={this.state.username} onChangeText={(val)=>this.setState({username:val})} style={styles.inputbox} placeholder='username' />
+            <Text style={{color:"white",fontSize:15}}>forgot password? </Text>
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate("ForgotPassword")}>
+                <Text style={{color:"cyan"}}>recover here</Text>
+            </TouchableOpacity>
+            </View>
         </View>
-        <View style={{flexDirection:"row"}}>
-            <Feather name="lock" size={20} style={{alignSelf:"center",position:"absolute",right:10}}/>
-            <TextInput value={this.state.password} onChangeText={(val)=>this.setState({password:val})} style={styles.inputbox} placeholder='password' secureTextEntry={true}/>
-        </View>
-        <TouchableOpacity onPress={this.send} style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("RegisterFirst")}>
+            <Text style={{fontSize:16,color:"white"}}>Dont you have an account yet?</Text>
         </TouchableOpacity>
-        <View style={{flexDirection:"row"}}>
-         <Text>forgot password? </Text>
-        <TouchableOpacity  onPress={()=>this.props.navigation.navigate("ForgotPassword")}>
-            <Text style={{color:"green"}}>recover here</Text>
-        </TouchableOpacity>
-        </View>
-      </View>
-      <TouchableOpacity onPress={()=>this.props.navigation.navigate("RegisterFirst")}>
-          <Text style={{fontSize:16}}>Dont you have an account yet?</Text>
-      </TouchableOpacity>
+        <StatusBar  style='light'/>
       </ImageBackground>
 
     )

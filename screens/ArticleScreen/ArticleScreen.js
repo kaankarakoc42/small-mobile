@@ -1,11 +1,13 @@
 
 import React, { Component } from 'react';
-import { Text, View ,ScrollView,Dimensions,TouchableOpacity} from 'react-native';
+import { Text, View ,ScrollView,Dimensions,TouchableOpacity, ViewBase,ImageBackground} from 'react-native';
 import edjsHTML from "editorjs-html";
 import RenderHtml from 'react-native-render-html';
 import styles from './styles.js'
 import { FontAwesome,AntDesign } from '@expo/vector-icons'; 
 import components from '../../components/components.js';
+const bgImage = require("../../assets/bg.png");
+
 
 
 class ArticleScreen extends Component {
@@ -26,18 +28,18 @@ class ArticleScreen extends Component {
 
   render() {
     return (
-      <View style={{flex:1,alignContent:"center"}}>
-      <ScrollView style={{flex:1,alignContent:"center"}}>
+      <ImageBackground source={bgImage} style={{flex:1,alignContent:"center",alignItems:"center"}}>
+      <ScrollView>
+        <View style={{width:Dimensions.get("screen").width*(9/10),alignSelf:"center"}}>
         <RenderHtml
+          baseStyle={{backgroundColor:"#f9f9f9"}}
           contentWidth={Dimensions.get("screen").width*(8/10)}
-          source={{html:`<html><head></head><body style="font-size:17px;color:#212121;">${html}</body></html>`}}
+          source={{html:`<html><head></head><body style="font-size:17px;color:#212121;padding:10px;">${html}</body></html>`}}
         />
-        <components.CommentsectionComponents data={data.author}/>
+        </View>
       </ScrollView>
 
-
-
-      </View>
+      </ImageBackground>
 
 
     )

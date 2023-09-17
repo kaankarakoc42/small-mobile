@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View ,TextInput,TouchableOpacity,ToastAndroid} from 'react-native';
+import { Text, View ,TextInput,TouchableOpacity,ToastAndroid,ImageBackground} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; 
 import styles from './styles.js'
 import api from '../../api/requests.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import components from '../../components/components.js';
+import { StatusBar } from 'expo-status-bar';
+import customs from '../../customizer.js';
 
 class RegisterScreen extends Component {
   constructor(props) {
@@ -52,16 +55,14 @@ class RegisterScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground source={customs.bgImage} style={styles.container}>
       <View style={styles.RegisterForm}>
-        <FontAwesome name="user" size={50} color="black" />
-        <TextInput value={this.state.password} onChangeText={(val)=>this.setState({password:val})} style={styles.inputbox} placeholder='password' secureTextEntry={true}/>
-        <TextInput value={this.state.passwordControl} onChangeText={(val)=>this.setState({passwordControl:val})} style={styles.inputbox} placeholder='confirm-password' secureTextEntry={true}/>
-        <TouchableOpacity onPress={this.control} style={styles.button}>
-            <Text style={styles.buttonText}>send</Text>
-        </TouchableOpacity>
+        <components.SmalllogoimageComponents/>
+        <components.UsertextinputComponents icon="lock" placeholder="Password" placeholderTextColor={"white"}  value={this.state.password} onChangeText={val=>this.setState({password:val})}/>
+        <components.UsertextinputComponents icon="lock"  placeholder='confirm-password' placeholderTextColor={"white"}  secureTextEntry={true} value={this.state.passwordControl} onChangeText={val=>this.setState({passwordControl:val})}/>
+        <components.AuthformbuttonComponents title={"Register"} onPress={this.control}/>
       </View>
-      </View>
+      </ImageBackground>
     )
   }
 }

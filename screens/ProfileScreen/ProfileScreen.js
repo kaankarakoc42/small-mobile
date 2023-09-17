@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../api/requests.js';
 import styles from './styles.js'
 const profilFoto = require("../../assets/profileFoto.png");
-const bgImage = require("../../assets/bg.png");
+import customs from '../../customizer.js';
 const cardImage = require("../../assets/card.png");
 
 class ProfileScreen extends Component {
@@ -37,7 +37,7 @@ class ProfileScreen extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-        <ImageBackground source={bgImage} resizeMode="cover" style={{flex:1}}>
+        <ImageBackground source={customs.bgImage} resizeMode="cover" style={{flex:1}}>
           
         <View style={{justifyContent:"center",width:"80%",height:"30%",alignSelf:'center',alignItems:"center",top:100,zIndex:2,borderRadius:10}}>
            

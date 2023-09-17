@@ -3,7 +3,7 @@ import { Text, View,FlatList,ImageBackground} from 'react-native';
 import styles from './styles.js'
 import api from '../../api/requests.js';
 import components from '../../components/components.js';
-const bgImage = require("../../assets/bg.png");
+import customs from '../../customizer.js';
 
 class FeedScreen extends Component {
   constructor(props) {
@@ -19,8 +19,10 @@ class FeedScreen extends Component {
 
   render() {
     return (
-      <ImageBackground source={bgImage} style={styles.container}>
-       <FlatList data={this.state.articles} renderItem={({item})=>(<components.ArticlefeedComponents onPress={()=>{this.props.navigation.navigate("Article",{data:item})}} data={item}/>)}>
+      <ImageBackground source={customs.bgImage} style={styles.container}>
+       <FlatList data={this.state.articles} renderItem={({item})=>(
+       <components.ArticlefeedComponents onPress={()=>{this.props.navigation.navigate("Article",{data:item})}} data={item}/>
+       )}>
        </FlatList>
       </ImageBackground>
     )

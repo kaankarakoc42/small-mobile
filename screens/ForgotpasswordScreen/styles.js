@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
   container: {
      flex:1,
 
-     alignItems: "center"
+     alignItems: "center",
+
   },
   loginForm:{
     width:Dimensions.get("screen").width*(6/10),

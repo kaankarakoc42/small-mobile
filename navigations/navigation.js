@@ -48,9 +48,7 @@ function MyDrawer() {
   );
 }
 
-const headerStyle={
-      backgroundColor:"#f9f9f9f9"
-}
+
 
 function MyFeedStack(){
   return (
@@ -80,7 +78,7 @@ function MyFeedStack(){
 
 function MyTabs() {
   return (
-    <Tab.Navigator >
+    <Tab.Navigator initialRouteName='AddArticle'>
         <Tab.Screen name="FeedStack" component={MyFeedStack} options={({ navigation }) => ({
       title: "Feed",
       tabBarShowLabel: false,
@@ -93,6 +91,7 @@ function MyTabs() {
 
     <Tab.Screen name="AddArticle" component={screens.AddarticleScreen} options={({ navigation }) => ({
       headerShown:false,
+      tabBarHideOnKeyboard:true,
       tabBarShowLabel: false,
       tabBarIcon: ({ focused, color }) => (
         <FontAwesome name="plus-circle" size={30}/>
@@ -124,24 +123,16 @@ function MyStack() {
 
   return (
     
-      <Stack.Navigator initialRouteName='Waiting'>
+      <Stack.Navigator initialRouteName='Profile'>
         <Stack.Screen name="Waiting" component={screens.WaitingScreen} options={{headerShown:false,}}/>
-        <Stack.Screen name="Login" component={screens.LoginScreen} options={{headerShown:false,headerLeft:null,title:<View  style={{flexDirection:"row"}}><Image source={icon} style={{
-            width: 40,
-            height: 40,
-            resizeMode: 'cover',
-          }}/>
-          <Text style={{left:50,fontSize:25}}>
-          Login
-          </Text>
-          </View>}} />
-        <Stack.Screen name="Register" component={screens.RegisterScreen} />
-        <Stack.Screen name="RegisterFirst" component={screens.RegisterfirstScreen} />
-        <Stack.Screen name="Profile" component={MyTabs}  options={{headerLeft:null,headerShown:false}}/>
+        <Stack.Screen name="Login" component={screens.LoginScreen} options={{headerShown:false,headerLeft:null}} />
+        <Stack.Screen name="Register" component={screens.RegisterScreen}  options={{ headerTransparent: true,headerTintColor:"white"}} />
+        <Stack.Screen name="RegisterFirst" component={screens.RegisterfirstScreen} options={{ headerTransparent: true,headerTintColor:"white"}} />
+        <Stack.Screen name="Profile"  component={MyTabs}  options={{headerLeft:null,headerShown:false}}/>
         <Stack.Screen name="Settings" component={MyDrawer} />
         <Stack.Screen name="FeedSearch" component={screens.SearchfeedScreen} options={({ navigation }) => ({title:""})}/>
-        <Stack.Screen name="ForgotPassword" component={screens.ForgotpasswordScreen} options={({ navigation }) => ({title:"", headerTransparent: true})}/>
-        <Stack.Screen name="ResetPasswordCode" component={screens.ResetpasswordconfirmationScreen} options={({ navigation }) => ({title:"", headerTransparent: true})}/>
+        <Stack.Screen name="ForgotPassword" component={screens.ForgotpasswordScreen} options={({ navigation }) => ({title:"", headerTransparent: true,headerTintColor:"white"})}/>
+        <Stack.Screen name="ResetPasswordCode" component={screens.ResetpasswordconfirmationScreen} options={({ navigation }) => ({title:"", headerTransparent: true,headerTintColor:"white"})}/>
         <Stack.Screen name="ResetPassword" component={screens.ResetpasswordScreen} options={({ navigation }) => ({title:"", headerTransparent: true})}/>
        </Stack.Navigator>
   

@@ -5,8 +5,7 @@ import styles from './styles.js';
 import api from '../../api/requests.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const logo = require("../../assets/small-mobile.png")
-const bgImage = require("../../assets/bg.png");
-
+import customs from '../../customizer.js';
 
 class ResetpasswordScreen extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class ResetpasswordScreen extends Component {
 
   render() {
     return (
-      <ImageBackground source={bgImage}  style={styles.container}>
+      <ImageBackground source={customs.bgImage}  style={styles.container}>
       <View style={styles.loginForm}>
         <Image source={logo} style={{
             width: 300,

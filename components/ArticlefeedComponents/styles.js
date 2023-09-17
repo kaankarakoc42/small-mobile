@@ -8,7 +8,8 @@ card:{
 
   borderRadius:10,
   margin:10,
-  alignItems:"center"
+  alignItems:"center",
+  elevation: 7
 },
 upper:{
   width:320,

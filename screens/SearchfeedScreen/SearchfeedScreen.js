@@ -46,7 +46,7 @@ class SearchfeedScreen extends Component {
     return (
       <View style={styles.container}>
          <FlatList data={this.state.items} renderItem={({item})=>(
-            <components.ArticlefeedComponents data={item}/>
+            <components.ArticlefeedComponents onPress={()=>{this.props.navigation.navigate("Article",{data:item})}} data={item}/>
          )}>
          </FlatList>
       </View>
